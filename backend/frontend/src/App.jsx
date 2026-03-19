@@ -10,7 +10,7 @@ import {
   Play, CheckSquare, Square, TrendingUp, Terminal, Star, Briefcase,
   ArrowLeft, Phone, ChevronDown, Medal,
   Search, Bell, Flame, Github, MessageCircle, Bot, Send, BellRing, ArrowRight, Clock,
-  Layers, Database, Cpu // Added for the new Resource Hub cards
+  Layers, Database, Cpu 
 } from 'lucide-react';
 
 import { QRCodeSVG } from 'qrcode.react'; 
@@ -118,8 +118,8 @@ const ChatWidget = ({ darkMode }) => {
     setIsTyping(true);
 
     try {
-      // LINK 1 UPDATED HERE
-      const response = await fetch('https://gfg-rit-club.onrender.com/api/chat', {
+      // FIX 1: Corrected Chatbot URL
+      const response = await fetch('https://gfg-ritclub.onrender.com/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ message: userMessage.text })
@@ -234,8 +234,8 @@ function App() {
 
   const fetchEvents = async () => {
     try {
-      // LINK 2 UPDATED HERE
-      const response = await fetch('https://gfg-rit-club.onrender.com');
+      // FIX 2: Corrected Events URL
+      const response = await fetch('https://gfg-ritclub.onrender.com/api/events');
       if(response.ok) {
         const data = await response.json();
         setEvents(data);
@@ -780,8 +780,8 @@ const EventsComponent = ({ darkMode, events, user, setShowLoginModal, setActiveR
     const ticketInfo = { name: regData.name, rollNo: regData.rollNo, email: regData.email, eventTitle: selectedEvent.title, ticketId: `GFG-${Math.floor(Math.random() * 10000)}` };
 
     try {
-      // LINK 3 UPDATED HERE
-      const response = await fetch('https://gfg-rit-club.onrender.com/api/register', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(ticketInfo) });
+      // FIX 3: Corrected Registration URL
+      const response = await fetch('https://gfg-ritclub.onrender.com/api/register', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(ticketInfo) });
       if (response.ok) { setTicket(ticketInfo); setSelectedEvent(null); } 
       else if (response.status === 400) { const errorData = await response.json(); alert(`Registration Denied: ${errorData.detail}`); } 
       else { alert("Server error during registration."); }
